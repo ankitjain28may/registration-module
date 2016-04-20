@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 require_once 'database.php';
 class register
 {
@@ -15,27 +15,29 @@ class register
 		$this->key=0;
 		$bd = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-		$query="CREATE TABLE IF NOT EXISTS login (
-			login_id int primary key auto_increment unique not null,
-			name varchar(255) not null,
+	
+
+		$query="CREATE TABLE IF NOT EXISTS register (
+			id int primary key auto_increment unique not null,
 			email varchar(255) unique not null,
 			username varchar(255) unique not null,
-			mobile varchar(11) not null,
-			FOREIGN KEY (login_id) REFERENCES register(id)
+			password varchar(255) not null
 			) ENGINE=INNODB;";
-		
-		if (!$result=$bd->query($query)) {
+
+		if (!$bd->query($query)) {
 			echo "Table is not created || Query failed";
 		}
 
-		$query="CREATE TABLE IF NOT EXISTS register (
-			id int primary key not null,
+			$query="CREATE TABLE IF NOT EXISTS login (
+			login_id int primary key not null,
+			name varchar(255) not null,
 			email varchar(255) unique not null,
 			username varchar(255) unique not null,
-			password varchar not null
+			mobile varchar(255) not null,
+			FOREIGN KEY (login_id) REFERENCES register(id)
 			) ENGINE=INNODB;";
-
-		if (!$result=$bd->query($query)) {
+		
+		if (!$bd->query($query)) {
 			echo "Table is not created || Query failed";
 		}
 		
@@ -83,7 +85,7 @@ class register
 			$_SESSION['mob']="Enter correct Mobile Number";
 		}
 
-		if($this->key!=1)
+		if(true)
 		{
 			$query="SELECT login_id FROM login WHERE email='$this->email'";
 			if ($result=$bd->query($query)) {
@@ -111,28 +113,31 @@ class register
 		else
 		{
 			$this->key=0;
-			$query="INSERT INTO login VALUES(null,'$this->name','$this->email','$this->username','$this->mobile')";
-			if (!$result=$bd->query($query)) {
+			$pass=md5($this->password);
+			$query="INSERT INTO register VALUES(null,'$this->email','$this->username','$pass')";
+			if(!$bd->query($query)) {
 				$this->key=1;
-				echo "You are not registered || Error in registration";
+				echo "You are not registered || Error in registration2";
 			}
 
-			$query="SELECT login_id FROM login WHERE email='$this->email'";
+			$query="SELECT id FROM register WHERE email='$this->email'";
 			if($result=$bd->query($query)) {
 				$row=$result->fetch_assoc();
-				$id=$row['login_id'];
+				$id=$row['id'];
 			}
 			else {
 				$this->key=1;
 				echo "Error in connecting with the database";
 			}
-			$pass=md5($this->password);
-			$query="INSERT INTO register VALUES('$id','$this->email','$this->username','$pass')";
-			if (!$result=$bd->query($query)) {
+
+
+			$query="INSERT INTO login VALUES('$id','$this->name','$this->email','$this->username','$this->mob')";
+			if(!$bd->query($query)) {
 				$this->key=1;
-				echo "You are not registered || Error in registration";
+				echo "You are not registered || Error in registration1";
 			}
 
+			
 		}
 		if ($this->key==0) {
 			$_SESSION['start']=0;

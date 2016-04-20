@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 require_once 'database.php';
 class login
 {
@@ -10,11 +10,7 @@ class login
 
 	function __construct()
 	{
-		$_SESSION['name']='';
-		$_SESSION['email']='';
-		$_SESSION['username']='';
 		$_SESSION['password']='';
-		$_SESSION['mob']='';
 		$_SESSION['login']='';
 	}
 
@@ -31,16 +27,12 @@ class login
 			$_SESSION['login']="Enter the login field";
 		}
 		elseif (ereg("^[@]{1}$",$this->login))
-		{
-			$this->key=2;	
+		{	
 			if(filter_var($this->email,FILTER_VALIDATE_EMAIL)== false) 
 			{
 			$this->key=1;
-			$_SESSION['email']="Enter correct Email address";
+			$_SESSION['login']="Enter correct Email address";
 			}
-		}
-		else {
-			$this->key=3;
 		}
 
 		
@@ -54,30 +46,34 @@ class login
 		}
 
 
-		if($this->key!=1)
+		if(true)
 		{
-			$query="SELECT login_id FROM login WHERE email='$this->login' or username='$this->login'";
+			$query="SELECT * FROM login WHERE email='$this->login' or username='$this->login'";
 			if ($result=$bd->query($query)) 
 			{
+				
 				if ($result->num_rows>0) 
 				{
 					$row=$result->fetch_assoc();
 					$login_id=$row['login_id'];
 					$query="SELECT id FROM register WHERE id='$login_id' and password='$password'";
-					if ($result=$bd->query($query))
+					$result=$bd->query($query);
+					if ($result->num_rows>0)
 					{
 						$_SESSION['start']=1;
+						header('Location: account.php');
 					}
 					else
 					{
 						$_SESSION['password']="Invalid Password";
 					}
 				}
+				else
+				{
+					$_SESSION['login']="Invalid username or email";
+				}
 			}
-			else
-			{
-				$_SESSION['login']="Invalid username or password";
-			}
+			
 		}
 		else
 		{
