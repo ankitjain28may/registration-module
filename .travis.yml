@@ -7,3 +7,6 @@ script: phpunit class.logout.php
 script: phpunit class.register.php
 
 sudo: false
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
