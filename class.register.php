@@ -13,7 +13,7 @@ class register
 	function __construct()
 	{
 		$this->key=0;
-		$bd = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	
 
@@ -24,7 +24,7 @@ class register
 			password varchar(255) not null
 			) ENGINE=INNODB;";
 
-		if (!$bd->query($query)) {
+		if (!$connect->query($query)) {
 			echo "Table is not created || Query failed";
 		}
 
@@ -37,7 +37,7 @@ class register
 			FOREIGN KEY (login_id) REFERENCES register(id)
 			) ENGINE=INNODB;";
 		
-		if (!$bd->query($query)) {
+		if (!$connect->query($query)) {
 			echo "Table is not created || Query failed";
 		}
 		
@@ -45,7 +45,7 @@ class register
 
 	function _register($name,$email,$username,$password,$mob)
 	{
-		$bd = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 		$this->name=trim($name);
 		$this->email=trim($email);
@@ -88,7 +88,7 @@ class register
 		if(true)
 		{
 			$query="SELECT login_id FROM login WHERE email='$this->email'";
-			if ($result=$bd->query($query)) {
+			if ($result=$connect->query($query)) {
 				if ($result->num_rows>0) {
 					$_SESSION['email']="Email is already registered";
 					$this->key=1;
@@ -96,7 +96,7 @@ class register
 			
 			}
 			$query="SELECT login_id FROM login WHERE username='$this->username'";
-			if ($result=$bd->query($query)) {
+			if ($result=$connect->query($query)) {
 				if ($result->num_rows>0) {
 					$_SESSION['username']="Username is already registered";
 					$this->key=1;
@@ -115,13 +115,13 @@ class register
 			$this->key=0;
 			$pass=md5($this->password);
 			$query="INSERT INTO register VALUES(null,'$this->email','$this->username','$pass')";
-			if(!$bd->query($query)) {
+			if(!$connect->query($query)) {
 				$this->key=1;
 				echo "You are not registered || Error in registration2";
 			}
 
 			$query="SELECT id FROM register WHERE email='$this->email'";
-			if($result=$bd->query($query)) {
+			if($result=$connect->query($query)) {
 				$row=$result->fetch_assoc();
 				$id=$row['id'];
 			}
@@ -132,7 +132,7 @@ class register
 
 
 			$query="INSERT INTO login VALUES('$id','$this->name','$this->email','$this->username','$this->mob')";
-			if(!$bd->query($query)) {
+			if(!$connect->query($query)) {
 				$this->key=1;
 				echo "You are not registered || Error in registration1";
 			}

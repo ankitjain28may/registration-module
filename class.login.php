@@ -16,7 +16,7 @@ class login
 
 	function _login($login,$password)
 	{
-		$bd = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 		$this->login=trim($login);
 		$this->password=trim($password);
@@ -49,7 +49,7 @@ class login
 		if(true)
 		{
 			$query="SELECT * FROM login WHERE email='$this->login' or username='$this->login'";
-			if ($result=$bd->query($query)) 
+			if ($result=$connect->query($query)) 
 			{
 				
 				if ($result->num_rows>0) 
@@ -57,7 +57,7 @@ class login
 					$row=$result->fetch_assoc();
 					$login_id=$row['login_id'];
 					$query="SELECT id FROM register WHERE id='$login_id' and password='$password'";
-					$result=$bd->query($query);
+					$result=$connect->query($query);
 					if ($result->num_rows>0)
 					{
 						$_SESSION['start']=1;
