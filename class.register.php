@@ -18,7 +18,7 @@ class register
 	
 
 		$query="CREATE TABLE IF NOT EXISTS register (
-			id int primary key auto_increment unique not null,
+			id int primary key auto_increment not null,
 			email varchar(255) unique not null,
 			username varchar(255) unique not null,
 			password varchar(255) not null
@@ -123,7 +123,7 @@ class register
 			$query="SELECT id FROM register WHERE email='$this->email'";
 			if($result=$connect->query($query)) {
 				$row=$result->fetch_assoc();
-				$id=$row['id'];
+				$_id=$row['id'];
 			}
 			else {
 				$this->key=1;
@@ -131,7 +131,7 @@ class register
 			}
 
 
-			$query="INSERT INTO login VALUES('$id','$this->name','$this->email','$this->username','$this->mob')";
+			$query="INSERT INTO login VALUES('$_id','$this->name','$this->email','$this->username','$this->mob')";
 			if(!$connect->query($query)) {
 				$this->key=1;
 				echo "You are not registered || Error in registration1";
