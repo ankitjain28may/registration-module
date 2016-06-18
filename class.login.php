@@ -12,6 +12,7 @@ class login
 	{
 		$_SESSION['password']='';
 		$_SESSION['login']='';
+		$this->key=0;
 	}
 
 	function _login($login,$password)
@@ -46,7 +47,7 @@ class login
 		}
 
 
-		if(true)
+		if($this->key==0)
 		{
 			$query="SELECT * FROM login WHERE email='$this->login' or username='$this->login'";
 			if ($result=$connect->query($query)) 
@@ -60,7 +61,8 @@ class login
 					$result=$connect->query($query);
 					if ($result->num_rows>0)
 					{
-						$_SESSION['start']=1;
+						$row=$result->fetch_assoc();
+						$_SESSION['start']=$row['id'];
 						header('Location: account.php');
 					}
 					else
@@ -72,8 +74,7 @@ class login
 				{
 					$_SESSION['login']="Invalid username or email";
 				}
-			}
-			
+			}	
 		}
 		else
 		{
