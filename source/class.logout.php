@@ -4,7 +4,6 @@ if(isset($_SESSION['start']))
 {
 	unset($_SESSION['start']);
 	header('Location: ../index.php');
-
 }
 else
 {

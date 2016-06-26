@@ -1,8 +1,34 @@
 
 <a href="https://continuousphp.com/git-hub/ankitjain28may/registration-module"><img alt="Build Status" src="https://status.continuousphp.com/git-hub/ankitjain28may/registration-module?token=bc2756bb-c28b-4896-a3cb-ca62ef41f3cb&branch=master" /></a>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bc923721c91432189acbd9f4b2925c4)](https://www.codacy.com/app/ankitjain28may77/registration-module?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ankitjain28may/registration-module&amp;utm_campaign=Badge_Grade)
+<h2>Description :- </h2>
+<p>It is basically a module to integrate a login-registration part in your projects.</p><br>
 
-It is basically a module to integrate a login-registration in your project.
+<h2>Technologies used :- </h2>
+<ul>
+	<li>PHP</li>
+	<li>SQL</li>
+	<li>JavaScript</li>
+	<li>jQuery</li>
+	<li>HTML 5</li>
+	<li>CSS 3</li>
+	<li>AJAX</li>
+	<li>JSON</li>
+</ul>
 
-Created By - Ankit Jain
+<h2>Get Started :- </h2>
+<p>It can be used in two ways-- If you dont want to use ajax, you can integrate the files in the source folder directly, the files in the source folder return JSON as an output or error.</p><br>
+
+<ul>
+	<li>Step 1- <a href="http://www.github.com/ankitjain28may/registration-module">Fork</a> or download this project in your directory.</li>
+	<li>Step 2- Design your login.php and register.php page using CSS according to your project theme.</li>
+	<li>Change the url based things in source folder according to your project name or url</li>
+</ul>
+
+<h2>Contribute :- </h2>
+<p>Start contributing to this project, open issues if you find any problem regarding with this project</p><br>
+<h3>Fork, Code and Push </h3>
+<p>Feel free to Contribute.</p>
+
+
+<address>Created By - Ankit Jain</address>
