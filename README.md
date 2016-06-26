@@ -20,7 +20,7 @@
 <p>It can be used in two ways-- If you dont want to use ajax, you can integrate the files in the source folder directly, the files in the source folder return JSON as an output or error.</p><br>
 
 <ul>
-	<li>Step 1- <a href="http://www.github.com/ankitjain28may/registration-module">Fork</a> or download this project in your directory.</li>
+	<li>Step 1- <a href="http://www.github.com/ankitjain28may/registration-module">Fork</a> or <a href="https://github.com/ankitjain28may/registration-module/archive/master.zip">download</a> this project in your directory.</li>
 	<li>Step 2- Design your login.php and register.php page using CSS according to your project theme.</li>
 	<li>Change the url based things in source folder according to your project name or url</li>
 </ul>
