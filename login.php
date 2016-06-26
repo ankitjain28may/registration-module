@@ -13,9 +13,9 @@ if(isset($_SESSION['start']))
 	</head>
 	<body>
 		
-            <label id="email1">Email or Username</label><br><br>
+            <label id="login_label">Email or Username</label><br><br>
             <input type="text" name="login" id="login" placeholder="Email or Username" ><br><br>
-            <label id="pass">Password</label><br><br>
+            <label id="pass_label">Password</label><br><br>
             <input type="password" name="password" id="password" placeholder="Password"><br><br><br>
             <button name="submit" onclick="login_check()" value="Login">Login</button>
         

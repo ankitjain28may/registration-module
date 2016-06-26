@@ -48,12 +48,12 @@ function login_check()
 		        }
 		        if(arr['login'])
 		        {
-		        	$("#email1 p").remove("p");
+		        	$("#login_label p").remove("p");
 					show_login_error(arr['login']);
 		        }
 		        if(arr['password'])
 		        {
-		        	$("#pass p").remove("p");
+		        	$("#pass_label p").remove("p");
 					show_pass_error(arr['password']);
 		        }
 		    }
@@ -72,22 +72,22 @@ function show_login_error(txt)
 {
 	$("#login").css({"outline":"none","border-color":"red"});
 	var txt1=$("<p></p>").text(txt);
-	$("#email1").append(txt1);
+	$("#login_label").append(txt1);
 }
 
 function show_pass_error(txt)
 {
 	$("#password").css({"outline":"none","border-color":"red"});
 	var txt1=$("<p></p>").text(txt);
-	$("#pass").append(txt1);
+	$("#pass_label").append(txt1);
 }
 
 function login()
 {
 	var re=/^\S+@/;
 	var val=$("#login").val();
-	$("#email1 p").remove("p");
-	console.log(val);
+	$("#login_label p").remove("p");
+	// console.log(val);
 	if(val=="")
 	{
 		show_login_error("Please enter your email or username");
@@ -115,7 +115,7 @@ function login()
 function password()
 {
 	var val=$("#password").val();
-	$("#pass p").remove("p");
+	$("#pass_label p").remove("p");
 	if(val=="")
 	{
 		show_pass_error("Enter Password");
