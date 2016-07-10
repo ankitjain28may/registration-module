@@ -50,7 +50,7 @@ $("#password").blur(function() {
 
 });
 
-$("button").click(function() {
+function register_check() {
 	var name=$("#name").val();
 	var email=$("#email").val();
 	var username=$("#username").val();
@@ -105,7 +105,7 @@ $("button").click(function() {
 	{
 		alert("Please Fill correct details");
 	}
-});
+}
 
 function show_name_error(txt)
 {

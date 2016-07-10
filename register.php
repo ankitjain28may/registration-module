@@ -22,7 +22,7 @@ if(isset($_SESSION['start']))
         <input type="text" name="mob" id="mob" placeholder="99******00"><br><br>
         <label id="pass_label">Password</label><br><br>
         <input type="password" name="password" id="password" placeholder="Password"><br><br><br>
-        <button name="submit" value="Register">Register</button>
+        <button name="submit" value="Register" onclick="register_check()">Register</button>
     </body>
     <script type="text/javascript" src="js/register_validate.js"></script>
 </html>
