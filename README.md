@@ -27,6 +27,11 @@ Step 2- Design your login.php and register.php page using CSS according to your 
 
 Change the url based things in source folder according to your project name or url
 
+##Install using npm :-
+
+```
+npm install registration-module
+```
 
 ##Contribute :-
 
