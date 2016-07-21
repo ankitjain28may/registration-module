@@ -2,6 +2,6 @@
     "name": "registration-module",
     "description": "Registration-Login Module",
     "require": {
-        "php": "^5.3.3 || ^7.0",
+        "php": "^5.3.3 || ^7.0"
     }
 }
