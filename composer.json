@@ -1,6 +1,20 @@
 {
     "name": "registration-login/registration-module",
     "description": "Registration-Login Module",
+    "keywords": [
+    "Registration-Login",
+    "Module",
+    "Registration",
+    "Signup",
+    "Login",
+    "Form"
+  ],
+  "author": ["Ankit Jain","ankitjain28may77@gmail.com","http://ankitjain.surge.sh"],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankitjain28may/registration-module/issues"
+  },
+  "homepage": "https://github.com/ankitjain28may/registration-module#readme",
     "require": {
         "php": "^5.3.3 || ^7.0"
     }
