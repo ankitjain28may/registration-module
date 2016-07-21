@@ -4,6 +4,7 @@
     "version":"1.0.0",
     "type": "library",
     "minimum-stability": "stable",
+    "prefer-stable": true,
     "keywords": [
     "Registration-Login",
     "Module",
