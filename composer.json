@@ -1,6 +1,7 @@
 {
     "name": "registration-login/registration-module",
     "description": "Registration-Login Module",
+    "type": "library",
     "keywords": [
     "Registration-Login",
     "Module",
