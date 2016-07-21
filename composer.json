@@ -3,7 +3,7 @@
     "description": "Registration-Login Module",
     "version":"1.0.0",
     "type": "library",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "keywords": [
     "Registration-Login",
     "Module",
