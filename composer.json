@@ -1,7 +1,8 @@
 {
     "name": "registration-login/registration-module",
     "description": "Registration-Login Module",
-    "type": "project",
+    "version":"1.0.0",
+    "type": "library",
     "keywords": [
     "Registration-Login",
     "Module",
