@@ -22,5 +22,4 @@ matrix:
 
 before_script:
   - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS account;" -uroot; fi
-  - composer self-update
 
