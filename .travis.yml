@@ -14,3 +14,7 @@ matrix:
         - php: 7.0
         - php: hhvm
     fast_finish: true
+
+    before_script:
+        - composer self-update
+
