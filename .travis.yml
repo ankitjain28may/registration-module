@@ -1,25 +1,12 @@
 language: php
-
 php:
-  - 5.2
-  - 5.3
-  - 5.4
-  - 5.5
   - 5.6
-  - 7.0
   - hhvm
+script: phpunit class.login.php
+script: phpunit class.logout.php
+script: phpunit class.register.php
 
-env:
-  - DB=mysql
+sudo: false
 
-matrix:
-  exclude:
-    - php: hhvm
-      env: DB=mysql  
-  allow_failures:
-    - php: 7.0
-    - php: hhvm
-
-before_script:
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS account;" -uroot; fi
-
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

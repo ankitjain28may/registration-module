@@ -1,21 +1,21 @@
-var val_login=1;
-var val_pass=1;
+var valLogin=1;
+var valPass=1;
 
-function init()
+function initLogin()
 {
 	login();
-	password();
+	passwordLogin();
 }
 
-$("#login").blur(function() 
+$("#login").blur(function()
 {
 	login();
 });
 
 
-$("#password").blur(function()
+$("#passLogin").blur(function()
 {
-	password();
+	passwordLogin();
 });
 
 
@@ -25,42 +25,42 @@ function validate_email(val)
 	return re.test(val);
 }
 
-function login_check()
+function loginCheck()
 {
 	var login=$("#login").val();
-	var password=$("#password").val();
-	init();
+	var password=$("#passLogin").val();
+	initLogin();
 	// console.log(login);
-	if(val_login==0 && val_pass==0)
+	if(valLogin==0 && valPass==0)
 	{
 		var q={"login":login,"password":password};
 	  	q="q="+JSON.stringify(q);
 	  	// console.log(q);
 	  	var xmlhttp = new XMLHttpRequest();
-	  	xmlhttp.onreadystatechange = function() 
+	  	xmlhttp.onreadystatechange = function()
 	  	{
 		    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 		    {
-		      	arr=JSON.parse(xmlhttp.responseText);
-		        if(arr['location'])
+		      	result=JSON.parse(xmlhttp.responseText);
+		        if(result['location'])
 		        {
-		        	location.href=arr['location'];
+		        	location.href=result['location'];
 		        }
-		        if(arr['login'])
+		        if(result['login'])
 		        {
-		        	$("#login_label p").remove("p");
-					show_login_error(arr['login']);
+		        	$("#loginLabel p").remove("p");
+					showLoginError(result['login']);
 		        }
-		        if(arr['password'])
+		        if(result['password'])
 		        {
-		        	$("#pass_label p").remove("p");
-					show_pass_error(arr['password']);
+		        	$("#passLabelLogin p").remove("p");
+					showPassError(result['password']);
 		        }
 		    }
 	  	};
 		xmlhttp.open("POST", "ajax/validate_login.php", true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send(q); 
+		xmlhttp.send(q);
 	}
 	else
 	{
@@ -68,61 +68,61 @@ function login_check()
 	}
 }
 
-function show_login_error(txt)
+function showLoginError(txt)
 {
 	$("#login").css({"outline":"none","border-color":"red"});
-	var txt1=$("<p></p>").text(txt);
-	$("#login_label").append(txt1);
+	var txt1=$("<span></span>").text(txt).css({'font-size':'15px','color':'red','display':'inline-block',"padding": "5px"});
+	$("#loginLabel").append(txt1);
 }
 
-function show_pass_error(txt)
+function showPassError(txt)
 {
-	$("#password").css({"outline":"none","border-color":"red"});
-	var txt1=$("<p></p>").text(txt);
-	$("#pass_label").append(txt1);
+	$("#passLogin").css({"outline":"none","border-color":"red"});
+	var txt1=$("<span></span>").text(txt).css({'font-size':'15px','color':'red','display':'inline-block',"padding": "5px"});
+	$("#passLabelLogin").append(txt1);
 }
 
 function login()
 {
 	var re=/^\S+@/;
 	var val=$("#login").val();
-	$("#login_label p").remove("p");
+	$("#loginLabel span").remove("span");
 	// console.log(val);
 	if(val=="")
 	{
-		show_login_error("Please enter your email or username");
+		showLoginError(" *Please enter your email or username");
 	}
 	else if(re.test(val))
 	{
 		var ret=validate_email(val);
 		if(!ret)
 		{
-			show_login_error("Invalid Email");
+			showLoginError(" *Invalid Email");
 		}
 		else
 		{
 			$("#login").css({"outline":"none","border-color":"green"});
-			val_login=0;
+			valLogin=0;
 		}
 	}
 	else
 	{
 		$("#login").css({"outline":"none","border-color":"green"});
-		val_login=0;
+		valLogin=0;
 	}
 }
 
-function password()
+function passwordLogin()
 {
-	var val=$("#password").val();
-	$("#pass_label p").remove("p");
+	var val=$("#passLogin").val();
+	$("#passLabelLogin span").remove("span");
 	if(val=="")
 	{
-		show_pass_error("Enter Password");
+		showPassError(" *Enter Password");
 	}
 	else
 	{
-		$("#password").css({"outline":"none","border-color":"green"});
-		val_pass=0;
+		$("#passLogin").css({"outline":"none","border-color":"green"});
+		valPass=0;
 	}
 }
