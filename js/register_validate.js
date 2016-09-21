@@ -81,7 +81,7 @@ function registerCheck() {
 		        }
 		        if(result['password'])
 		        {
-					showPassError(result['password']);
+					showPassErrorRegister(result['password']);
 		        }
 		        if(result['email'])
 		        {
@@ -139,7 +139,7 @@ function showMobError(txt)
 	$("#mobLabel").append(txt1);
 }
 
-function showPassError(txt)
+function showPassErrorRegister(txt)
 {
 	$("#passLabelRegister span").remove("span");
 	$("#passRegister").css({"outline":"none","border-color":"red"});
@@ -153,6 +153,7 @@ function name()
 	$("#name span").remove("span");
 	if(name=="")
 	{
+		valName=1;
 		showNameError(" *Please input your name");
 	}
 	else
@@ -169,10 +170,12 @@ function email()
 	$("#emailLabel span").remove("span");
 	if(val=="")
 	{
+		valEmail=1;
 		showEmailError(" *Enter Your email address");
 	}
 	else if(!ret)
 	{
+		valEmail=1;
 		showEmailError(" *Invalid Email");
 	}
 	else
@@ -190,10 +193,12 @@ function username()
 	$("#userLabel span").remove("span");
 	if(val=="")
 	{
+		valUser=1;
 		showUsernameError(" *Enter Your username");
 	}
 	else if(re.test(val))
 	{
+		valUser=1;
 		showUsernameError(" *Invalid username");
 	}
 	else
@@ -210,10 +215,12 @@ function mob()
 	$("#mobLabel span").remove("span");
 	if(mob=="")
 	{
+		valMob=1;
 		showMobError(" *Enter your mobile no.");
 	}
 	else if(!re.test(mob))
 	{
+		valMob=1;
 		showMobError(" *Enter 10 digit mobile no.");
 	}
 	else
@@ -229,7 +236,8 @@ function passwordRegister()
 	$("#passLabelRegister span").remove("span");
 	if(pass=="")
 	{
-		showPassError(" *Enter your password");
+		valPassRegister=1;
+		showPassErrorRegister(" *Enter your password");
 	}
 	else
 	{

@@ -48,13 +48,13 @@ function loginCheck()
 		        }
 		        if(result['login'])
 		        {
-		        	$("#loginLabel p").remove("p");
+		        	$("#loginLabel span").remove("span");
 					showLoginError(result['login']);
 		        }
 		        if(result['password'])
 		        {
-		        	$("#passLabelLogin p").remove("p");
-					showPassError(result['password']);
+		        	$("#passLabelLogin span").remove("span");
+					showPassErrorLogin(result['password']);
 		        }
 		    }
 	  	};
@@ -78,7 +78,7 @@ function showLoginError(txt)
 	$("#loginLabel").append(txt1);
 }
 
-function showPassError(txt)
+function showPassErrorLogin(txt)
 {
 	$("#passLogin span").remove('span');
 	$("#passLogin").css({"outline":"none","border-color":"red"});
@@ -94,6 +94,7 @@ function login()
 	// console.log(val);
 	if(val=="")
 	{
+		valLogin=1;
 		showLoginError(" *Please enter your email or username");
 	}
 	else if(re.test(val))
@@ -101,6 +102,7 @@ function login()
 		var ret=validate_email(val);
 		if(!ret)
 		{
+			valLogin=1;
 			showLoginError(" *Invalid Email");
 		}
 		else
@@ -122,7 +124,8 @@ function passwordLogin()
 	$("#passLabelLogin span").remove("span");
 	if(val=="")
 	{
-		showPassError(" *Enter Password");
+		valLogin=1;
+		showPassErrorLogin(" *Enter Password");
 	}
 	else
 	{
