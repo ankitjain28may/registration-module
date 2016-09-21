@@ -64,12 +64,15 @@ function loginCheck()
 	}
 	else
 	{
-		alert("Enter correct details");
+		// alert("Enter correct details");
+		$("#myModal").modal()
+
 	}
 }
 
 function showLoginError(txt)
 {
+	$("#login span").remove('span');
 	$("#login").css({"outline":"none","border-color":"red"});
 	var txt1=$("<span></span>").text(txt).css({'font-size':'15px','color':'red','display':'inline-block',"padding": "5px"});
 	$("#loginLabel").append(txt1);
@@ -77,6 +80,7 @@ function showLoginError(txt)
 
 function showPassError(txt)
 {
+	$("#passLogin span").remove('span');
 	$("#passLogin").css({"outline":"none","border-color":"red"});
 	var txt1=$("<span></span>").text(txt).css({'font-size':'15px','color':'red','display':'inline-block',"padding": "5px"});
 	$("#passLabelLogin").append(txt1);

@@ -103,7 +103,8 @@ function registerCheck() {
 	}
 	else
 	{
-		alert("Please Fill correct details");
+		// alert("Please Fill correct details");
+		$("#myModal").modal()
 	}
 }
 
