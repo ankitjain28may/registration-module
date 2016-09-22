@@ -4,36 +4,24 @@
 #Registration-Module
 
 It is basically a module to integrate a login-registration part in your projects.
+It is completely integrated through ajax and jquery so you do not need to reload page whenever it sends a request, everything is done for you.
 
-##Technologies used :-
+Change source/database.php according to the credentials and everything is done for your project.
 
-PHP
-SQL
-JavaScript
-jQuery
-HTML 5
-CSS 3
-AJAX
-JSON
+###Install through Composer
+```
+    require {
+    'registration-module/module' : 'dev-master'
+    }
+```
 
-##Get Started :-
+###Install through npm
+```
+    npm install registration-module
+```
 
-It can be used in two ways-- If you dont want to use ajax, you can integrate the files in the source folder directly, the files in the source folder return JSON as an output or error.
-
-
-Step 1- <a href="http://www.github.com/ankitjain28may/registration-module">Fork</a> or <a href="https://github.com/ankitjain28may/registration-module/archive/master.zip">download</a> this project in your directory.
-
-Step 2- Design your login.php and register.php page using CSS according to your project theme.
-
-Change the url based things in source folder according to your project name or url
+Made By- Ankit Jain
 
 
-##Contribute :-
-
-Start contributing to this project, open issues if you find any problem regarding with this project.
-
-###Fork, Code and Push
-Feel free to Contribute.
 
 
-<address>Created By - Ankit Jain</address>
