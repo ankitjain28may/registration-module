@@ -1,6 +1,6 @@
 {
   "name": "registration-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Registration-Login Module",
   "main": "registration-module",
   "scripts": {
@@ -18,7 +18,11 @@
     "Login",
     "Form"
   ],
-  "author": ["Ankit Jain","ankitjain28may77@gmail.com","http://ankitjain.surge.sh"],
+  "author": [
+    "Ankit Jain",
+    "ankitjain28may77@gmail.com",
+    "http://ankitjain.surge.sh"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ankitjain28may/registration-module/issues"
