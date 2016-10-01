@@ -150,7 +150,7 @@ function showPassErrorRegister(txt)
 function name()
 {
 	var name=$("#name").val();
-	$("#name span").remove("span");
+	$("#nameLabel span").remove("span");
 	if(name=="")
 	{
 		valName=1;
