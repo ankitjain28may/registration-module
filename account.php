@@ -1,1 +1,1 @@
-<a href="source/class.logout.php">Logout</a>
+<a href="logout.php">Logout</a>

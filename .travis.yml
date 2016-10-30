@@ -2,7 +2,10 @@ language: php
 php:
   - 5.6
   - hhvm
-script: phpunit source/*.php
+before_script:
+  - composer install
+script:
+  - phpunit
 
 sudo: false
 
