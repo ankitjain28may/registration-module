@@ -23,7 +23,3 @@ Copy config/database.example.php to config/database.php, then change according t
 ```
 
 Made By- Ankit Jain
-
-
-
-
