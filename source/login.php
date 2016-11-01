@@ -1,6 +1,7 @@
 <?php
+namespace AnkitJain\RegistrationModule;
 @session_start();
-require_once 'database.php';
+require_once (dirname(__DIR__) . '/config/database.php');
 class login
 {
 

@@ -2,9 +2,11 @@ language: php
 php:
   - 5.6
   - hhvm
-script: phpunit class.login.php
-script: phpunit class.logout.php
-script: phpunit class.register.php
+before_script:
+  - cp ./config/database.example.php ./config/database.php
+  - composer install
+script:
+  - phpunit
 
 sudo: false
 

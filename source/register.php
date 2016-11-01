@@ -1,7 +1,8 @@
 <?php
+namespace AnkitJain\RegistrationModule;
 @session_start();
-require_once 'database.php';
-require_once 'class.validate.php';
+require_once (dirname(__DIR__) . '/config/database.php');
+require_once 'validate.php';
 
 class register
 {

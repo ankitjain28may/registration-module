@@ -8,7 +8,7 @@
 It is basically a module to integrate a login-registration part in your projects.
 It is completely integrated through ajax and jquery so you do not need to reload page whenever it sends a request, everything is done for you.
 
-Change source/database.php according to the credentials and everything is done for your project.
+Copy config/database.example.php to config/database.php, then change according to the credentials and everything is done for your project.
 
 ###Install through Composer
 ```
@@ -23,7 +23,3 @@ Change source/database.php according to the credentials and everything is done f
 ```
 
 Made By- Ankit Jain
-
-
-
-

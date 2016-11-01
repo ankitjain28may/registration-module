@@ -1,6 +1,7 @@
 <?php
+namespace AnkitJain\RegistrationModule;
 @session_start();
-require_once 'database.php';
+require_once (dirname(__DIR__) . '/config/database.php');
 class validate
 {
 	private $connect;
@@ -27,16 +28,16 @@ class validate
 			mobile varchar(255) not null,
 			FOREIGN KEY (login_id) REFERENCES register(id)
 			) ENGINE=INNODB;";
-		
+
 		if (!$this->connect->query($query)) {
 			echo "Table is not created || Query failed";
-		}	
+		}
 	}
-	
+
 	function validate_email_in_db($email)
 	{
 		$query="SELECT login_id FROM login WHERE email='$email'";
-		if ($result=$this->connect->query($query)) 
+		if ($result=$this->connect->query($query))
 		{
 			if ($result->num_rows>0) {
 				return 1;
@@ -55,7 +56,7 @@ class validate
 			}
 			else
 				return 0;
-			
+
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 @session_start();
-require_once '../source/class.register.php';
+require_once '../source/register.php';
 if(isset($_POST['q']))
 {
 	$registerField=json_decode($_POST['q']);
