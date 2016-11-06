@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.org/ankitjain28may/registration-module.svg?branch=master)](https://travis-ci.org/ankitjain28may/registration-module)
 [![Build Status](https://status.continuousphp.com/git-hub/ankitjain28may/registration-module?token=bc2756bb-c28b-4896-a3cb-ca62ef41f3cb&branch=master)](https://continuousphp.com/git-hub/ankitjain28may/registration-module)
 [![npm](https://img.shields.io/npm/dt/registration-module.svg?style=flat-square)](https://www.npmjs.com/package/registration-module)
 [![Packagist](https://img.shields.io/packagist/dt/registration-module/module.svg?style=flat-square)](https://packagist.org/packages/registration-module/module)
