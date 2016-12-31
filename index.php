@@ -24,11 +24,14 @@ if(isset($_SESSION['start']))
               .heading {
                 padding: 10px;
               }
+            input {
+              border-radius: 0px;
+            }
     </style>
   </head>
 
   <body>
-	<!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -51,7 +54,7 @@ if(isset($_SESSION['start']))
       </div>
     </nav>
 
-	<!-- Main Body -->
+    <!-- Main Body -->
     <div class="container"><br><br>
       <div class="row">
 
@@ -76,7 +79,7 @@ if(isset($_SESSION['start']))
           </form>
         </div>
 
-		<!-- Register -->
+        <!-- Register -->
         <div class="col-sm-4 col-sm-offset-2">
           <div class="row">
             <div class="col-sm-12 text-center">
@@ -102,7 +105,7 @@ if(isset($_SESSION['start']))
               <input type="text" name="mob" id="mob" class="form-control" placeholder="99******00">
             </div>
             <div class="form-group">
-              <label for="passRegister" id="passLabelRegister">Password</label><br><br>
+              <label for="passRegister" id="passLabelRegister">Password</label>
               <input type="password" name="passRegister" id="passRegister" class="form-control" class="form-control" placeholder="Password">
             </div>
             <button type="button" class="btn btn-success" onclick="registerCheck()" value="Register">Register</button>
@@ -112,7 +115,7 @@ if(isset($_SESSION['start']))
       <br><br><br>
     </div>
 
-	<!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -133,7 +136,7 @@ if(isset($_SESSION['start']))
     </div>
   </div>
 
-	<!-- Scripts -->
+    <!-- Scripts -->
     <script type="text/javascript" src="js/login_validate.js"></script>
     <script type="text/javascript" src="js/register_validate.js"></script>
   </body>

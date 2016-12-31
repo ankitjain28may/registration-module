@@ -14,13 +14,13 @@ class ExistsTest
     {
         return [
             [
-                RegistrationModule\login::class,
+                RegistrationModule\Login::class,
             ],
             [
-                RegistrationModule\register::class,
+                RegistrationModule\Register::class,
             ],
             [
-                RegistrationModule\validate::class,
+                RegistrationModule\Validate::class,
             ],
         ];
     }

@@ -2,78 +2,80 @@
 namespace AnkitJain\RegistrationModule;
 @session_start();
 require_once (dirname(__DIR__) . '/config/database.php');
-class login
+
+class Login
 {
 
 	private $login;
 	private $password;
 	private $key;
 	private $error;
+	private $connect;
 
 	function __construct()
 	{
-		$_SESSION['password']='';
-		$_SESSION['login']='';
-		$this->key=0;
-		$this->error=array();
+		$this->key = 0;
+		$this->connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$this->error = array();
 	}
 
-	function _login($login,$password)
+	function AuthLogin($login, $password)
 	{
-		$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-		$this->login=trim($login);
-		$this->password=trim($password);
+		$this->login = trim($login);
+		$this->password = trim($password);
 
 		if(empty($this->login))
 		{
-			$this->key=1;
-			$this->error=array_merge($this->error,["login"=>" *Enter the login field"]);
+			$this->key = 1;
+			$this->error = array_merge($this->error, ["login" => " *Enter the login field"]);
 		}
-		elseif (preg_match("/^[@]{1}$/",$this->login))
+		elseif (preg_match("/^[@]{1}$/", $this->login))
 		{
-			if(filter_var($this->email,FILTER_VALIDATE_EMAIL)== false)
+			if(filter_var($this->email, FILTER_VALIDATE_EMAIL) == false)
 			{
-			$this->key=1;
-			$this->error=array_merge($this->error,["login"=>" *Enter correct Email address"]);
+			$this->key = 1;
+			$this->error = array_merge($this->error, ["login" => " *Enter correct Email address"]);
 			}
 		}
 		if(empty($this->password)) {
-			$this->key=1;
-			$this->error=array_merge($this->error,["password"=>" *Enter the password"]);
+			$this->key = 1;
+			$this->error = array_merge($this->error, ["password" => " *Enter the password"]);
 		}
 		else
 		{
-			$pass=md5($this->password);
+			$pass = md5($this->password);
 		}
 
-		if($this->key==0)
+		if($this->key == 0)
 		{
-			$query="SELECT * FROM login WHERE email='$this->login' or username='$this->login'";
-			if ($result=$connect->query($query))
+			$query = "SELECT * FROM login WHERE email = '$this->login' or username = '$this->login'";
+			if ($result = $this->connect->query($query))
 			{
-				if ($result->num_rows>0)
+				if ($result->num_rows > 0)
 				{
-					$row=$result->fetch_assoc();
-					$login_id=$row['login_id'];
-					$query="SELECT id FROM register WHERE id='$login_id' and password='$pass'";
-					if($result=$connect->query($query))
+					$row = $result->fetch_assoc();
+					$login_id = $row['login_id'];
+					$query = "SELECT id FROM register WHERE id = '$login_id' and password = '$pass'";
+					if($result = $this->connect->query($query))
 					{
-						if ($result->num_rows>0)
+						if ($result->num_rows > 0)
 						{
-							$_SESSION['start']=$login_id;
-							return json_encode(["location" => SERVER.":".PORT."/registration-module/account.php"]);
+							$_SESSION['start'] = $login_id;
+							return json_encode([
+								"location" => URL."/account.php"
+							]);
 						}
 						else
 						{
-							$this->error=array_merge($this->error,["password"=>" *Invalid password"]);
+							$this->error = array_merge($this->error, ["password" => " *Invalid password"]);
 							return json_encode($this->error);
 						}
 					}
 				}
 				else
 				{
-					$this->error=array_merge($this->error,["login"=>" *Invalid username or email"]);
+					$this->error = array_merge($this->error, ["login" => " *Invalid username or email"]);
 					return json_encode($this->error);
 				}
 			}
@@ -83,6 +85,7 @@ class login
 		{
 			return json_encode($this->error);
 		}
+		$this->connect->close();
 	}
 }
 
