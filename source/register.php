@@ -1,7 +1,7 @@
 <?php
 
 namespace AnkitJain\RegistrationModule;
-use AnkitJain\RegistrationModule\validate;
+use AnkitJain\RegistrationModule\Validate;
 @session_start();
 require_once (dirname(__DIR__) . '/config/database.php');
 
