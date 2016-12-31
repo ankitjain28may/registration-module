@@ -9,8 +9,8 @@
    function URL()
   {
     $http = "http://";
-    $host = $_SERVER['SERVER_NAME'];
-    $port = $_SERVER['SERVER_PORT'];
+    @$host = $_SERVER['SERVER_NAME'];
+    @$port = $_SERVER['SERVER_PORT'];
     $fol = "";
     if(@$_SERVER['SERVER_ADDR']!=NULL)
     {
