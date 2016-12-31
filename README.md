@@ -51,7 +51,7 @@
     ```php
     php -S localhost:8080
     ```
-That's it, Now start development at [http://localhost:8888](http://localhost:8080) in your browser
+That's it, Now start development at [http://localhost:8080](http://localhost:8080) in your browser
 
 ## Contribution guidelines
 
