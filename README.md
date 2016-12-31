@@ -43,7 +43,7 @@
 
     ```mysql
     create database [database name];
-    mysql -u[user] -p [password] [database name] < path\sql\openchat.sql
+    mysql -u[user] -p [password] [database name] < path\sql\registration-module.sql
     ```
 
 4. Open a new terminal window and type
