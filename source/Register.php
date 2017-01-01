@@ -28,6 +28,8 @@ class Register
 		$username = trim($username);
 		$password = trim($password);
 		$mob = trim($mob);
+		$userId = '';
+
 		if (empty($name)) {
 			$this->onError(["name" => " *Enter the name"]);
 		}
@@ -88,9 +90,9 @@ class Register
 				$query = "SELECT id FROM register WHERE email = '$email'";
 				if($result = $this->connect->query($query)) {
 					$row = $result->fetch_assoc();
-					$UserId = $row['id'];
+					$userId = $row['id'];
 
-					$query = "INSERT INTO login VALUES('$UserId', '$name', '$email', '$username', '$mob')";
+					$query = "INSERT INTO login VALUES('$userId', '$name', '$email', '$username', '$mob')";
 					if(!$this->connect->query($query)) {
 						$this->key = 1;
 						echo "You are not registered || Error in registration1";
@@ -99,7 +101,7 @@ class Register
 			}
 		}
 		if ($this->key == 0) {
-			Session::put('start', $UserId);
+			Session::put('start', $userId);
 			return json_encode([
 				"location" => URL."/account.php"
 			]);
