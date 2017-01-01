@@ -1,4 +1,5 @@
 <?php
+
 namespace AnkitJain\RegistrationModule;
 use AnkitJain\RegistrationModule\Session;
 require_once (dirname(__DIR__) . '/config/database.php');
@@ -6,11 +7,9 @@ require_once (dirname(__DIR__) . '/config/database.php');
 class Login
 {
 
-	private $login;
-	private $password;
-	private $key;
-	private $error;
-	private $connect;
+	protected $key;
+	protected $error;
+	protected $connect;
 
 	function __construct()
 	{
@@ -22,34 +21,34 @@ class Login
 	function authLogin($login, $password)
 	{
 
-		$this->login = trim($login);
-		$this->password = trim($password);
+		$login = trim($login);
+		$password = trim($password);
 
-		if(empty($this->login))
+		if(empty($login))
 		{
 			$this->key = 1;
 			$this->error = array_merge($this->error, ["login" => " *Enter the login field"]);
 		}
-		elseif (preg_match("/^[@]{1}$/", $this->login))
+		elseif (preg_match("/^[@]{1}$/", $login))
 		{
-			if(filter_var($this->email, FILTER_VALIDATE_EMAIL) == false)
+			if(filter_var($login, FILTER_VALIDATE_EMAIL) == false)
 			{
 			$this->key = 1;
 			$this->error = array_merge($this->error, ["login" => " *Enter correct Email address"]);
 			}
 		}
-		if(empty($this->password)) {
+		if(empty($password)) {
 			$this->key = 1;
 			$this->error = array_merge($this->error, ["password" => " *Enter the password"]);
 		}
 		else
 		{
-			$pass = md5($this->password);
+			$pass = md5($password);
 		}
 
 		if($this->key == 0)
 		{
-			$query = "SELECT * FROM login WHERE email = '$this->login' or username = '$this->login'";
+			$query = "SELECT * FROM login WHERE email = '$login' or username = '$login'";
 			if ($result = $this->connect->query($query))
 			{
 				if ($result->num_rows > 0)
@@ -88,6 +87,3 @@ class Login
 		$this->connect->close();
 	}
 }
-
-
-?>

@@ -3,7 +3,6 @@
 namespace AnkitJain\RegistrationModule;
 require (dirname(__DIR__) . '/vendor/autoload.php');
 use AnkitJain\RegistrationModule\Register;
-@session_start();
 
 if(isset($_POST['q']))
 {
@@ -20,4 +19,4 @@ if(isset($_POST['q']))
 	else
 		echo json_encode([]);
 }
-?>
+

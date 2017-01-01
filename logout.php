@@ -13,4 +13,3 @@ else
 {
 	echo "Please Login";
 }
-?>

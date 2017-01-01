@@ -19,4 +19,4 @@
     $url = $http.$host.":".$port.$fol;
     return $url;
   }
-?>
+

@@ -75,7 +75,7 @@ function registerCheck() {
         {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
             {
-                result = JSON.parse(xmlhttp.responseText);
+                var result = JSON.parse(xmlhttp.responseText);
                 // console.log(result);
                 if(result['location'])
                 {

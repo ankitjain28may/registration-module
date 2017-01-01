@@ -8,11 +8,6 @@ require_once (dirname(__DIR__) . '/config/database.php');
 class Register
 {
 	protected $error;
-	protected $name;
-	protected $email;
-	protected $username;
-	protected $password;
-	protected $mob;
 	protected $key;
 	protected $obValidate;
 	protected $connect;
@@ -28,58 +23,51 @@ class Register
 
 	function authRegister($name, $email, $username, $password, $mob)
 	{
-		$this->name = trim($name);
-		$this->email = trim($email);
-		$this->username = trim($username);
-		$this->password = trim($password);
-		$this->mob = trim($mob);
-		if (empty($this->name)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["name" => " *Enter the name"]);
+		$name = trim($name);
+		$email = trim($email);
+		$username = trim($username);
+		$password = trim($password);
+		$mob = trim($mob);
+		if (empty($name)) {
+			$this->onError(["name" => " *Enter the name"]);
 		}
 
-		if(empty($this->email)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["email" => " *Enter the email address"]);
+		if(empty($email)) {
+			$this->onError(["email" => " *Enter the email address"]);
 		}
-		elseif(filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["email" => " *Enter correct Email address"]);
+		elseif(filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+			$this->onError(["email" => " *Enter correct Email address"]);
 		}
 		else
 		{
-			if($this->obValidate->validateEmailInDb($this->email))
+			if($this->obValidate->validateEmailInDb($email) === 1)
 			{
-				$this->key = 1;
-				$this->error = array_merge($this->error, ["email" => " *Email is already registered"]);
+
+				$this->onError(["email" => " *Email is already registered"]);
 			}
 		}
 
-		if(empty($this->username)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["username" => " *Enter the username"]);
+		if(empty($username)) {
+			$this->onError(["username" => " *Enter the username"]);
 		}
 		else
 		{
-			if($this->obValidate->validateUsernameInDb($this->username))
+			if($this->obValidate->validateUsernameInDb($username) === 1)
 			{
-				$this->key = 1;
-				$this->error = array_merge($this->error, ["username" => " *Username is already registered"]);
+
+				$this->onError(["username" => " *Username is already registered"]);
 			}
 		}
 
-		if(empty($this->password)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["password" => " *Enter the password"]);
+		if(empty($password)) {
+			$this->onError(["password" => " *Enter the password"]);
 		}
 
-		if(empty($this->mob)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["mob" => " *Enter the Mobile Number"]);
+		if(empty($mob)) {
+			$this->onError(["mob" => " *Enter the Mobile Number"]);
 		}
-		elseif (!preg_match("/^[0-9]{10}$/", $this->mob)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["mob" => " *Enter correct Mobile Number"]);
+		elseif (!preg_match("/^[0-9]{10}$/", $mob)) {
+			$this->onError(["mob" => " *Enter correct Mobile Number"]);
 		}
 
 		if($this->key == 1)
@@ -89,20 +77,20 @@ class Register
 		else
 		{
 			$this->key = 0;
-			$pass = md5($this->password);
-			$query = "INSERT INTO register VALUES(null, '$this->email', '$this->username', '$pass')";
+			$pass = md5($password);
+			$query = "INSERT INTO register VALUES(null, '$email', '$username', '$pass')";
 			if(!$this->connect->query($query)) {
 				$this->key = 1;
 				echo "You are not registered || Error in registration2";
 			}
 			else
 			{
-				$query = "SELECT id FROM register WHERE email = '$this->email'";
+				$query = "SELECT id FROM register WHERE email = '$email'";
 				if($result = $this->connect->query($query)) {
 					$row = $result->fetch_assoc();
 					$UserId = $row['id'];
 
-					$query = "INSERT INTO login VALUES('$UserId', '$this->name', '$this->email', '$this->username', '$this->mob')";
+					$query = "INSERT INTO login VALUES('$UserId', '$name', '$email', '$username', '$mob')";
 					if(!$this->connect->query($query)) {
 						$this->key = 1;
 						echo "You are not registered || Error in registration1";
@@ -111,7 +99,7 @@ class Register
 			}
 		}
 		if ($this->key == 0) {
-			Session::put('start', $loginID);
+			Session::put('start', $UserId);
 			return json_encode([
 				"location" => URL."/account.php"
 			]);
@@ -121,5 +109,10 @@ class Register
 			return json_encode($this->error);
 		}
 	}
+
+	public function onError($value)
+	{
+		$this->key = 1;
+		$this->error = array_merge($this->error, $value);
+	}
 }
-?>
