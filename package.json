@@ -1,6 +1,6 @@
 {
   "name": "registration-module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Registration-Login Module",
   "main": "registration-module",
   "scripts": {

@@ -2,7 +2,7 @@
 
 namespace AnkitJain\RegistrationModule;
 use AnkitJain\RegistrationModule\Validate;
-@session_start();
+use AnkitJain\RegistrationModule\Session;
 require_once (dirname(__DIR__) . '/config/database.php');
 
 class Register
@@ -14,7 +14,7 @@ class Register
 	protected $password;
 	protected $mob;
 	protected $key;
-	protected $ob;
+	protected $obValidate;
 	protected $connect;
 
 	function __construct()
@@ -22,11 +22,11 @@ class Register
 		$this->error = array();
 		$this->key = 0;
 		$this->connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$this->ob = new Validate();
+		$this->obValidate = new Validate();
 
 	}
 
-	function AuthRegister($name, $email, $username, $password, $mob)
+	function authRegister($name, $email, $username, $password, $mob)
 	{
 		$this->name = trim($name);
 		$this->email = trim($email);
@@ -48,7 +48,7 @@ class Register
 		}
 		else
 		{
-			if($this->ob->ValidateEmailInDb($this->email))
+			if($this->obValidate->validateEmailInDb($this->email))
 			{
 				$this->key = 1;
 				$this->error = array_merge($this->error, ["email" => " *Email is already registered"]);
@@ -61,7 +61,7 @@ class Register
 		}
 		else
 		{
-			if($this->ob->ValidateUsernameInDb($this->username))
+			if($this->obValidate->validateUsernameInDb($this->username))
 			{
 				$this->key = 1;
 				$this->error = array_merge($this->error, ["username" => " *Username is already registered"]);
@@ -100,9 +100,9 @@ class Register
 				$query = "SELECT id FROM register WHERE email = '$this->email'";
 				if($result = $this->connect->query($query)) {
 					$row = $result->fetch_assoc();
-					$id = $row['id'];
+					$UserId = $row['id'];
 
-					$query = "INSERT INTO login VALUES('$id', '$this->name', '$this->email', '$this->username', '$this->mob')";
+					$query = "INSERT INTO login VALUES('$UserId', '$this->name', '$this->email', '$this->username', '$this->mob')";
 					if(!$this->connect->query($query)) {
 						$this->key = 1;
 						echo "You are not registered || Error in registration1";
@@ -111,7 +111,7 @@ class Register
 			}
 		}
 		if ($this->key == 0) {
-			$_SESSION['start'] = $id;
+			Session::put('start', $loginID);
 			return json_encode([
 				"location" => URL."/account.php"
 			]);

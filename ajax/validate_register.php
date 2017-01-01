@@ -13,8 +13,8 @@ if(isset($_POST['q']))
 	$username = $registerField->username;
 	$mob = $registerField->mob;
 	$password = $registerField->password;
-	$ob = new Register();
-	$result = $ob->AuthRegister($name, $email, $username, $password, $mob);
+	$obRegister = new Register();
+	$result = $obRegister->authRegister($name, $email, $username, $password, $mob);
 	if(isset($result))
 		echo $result;
 	else

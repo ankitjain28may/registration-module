@@ -1,6 +1,5 @@
 <?php
 namespace AnkitJain\RegistrationModule;
-@session_start();
 require_once (dirname(__DIR__) . '/config/database.php');
 
 class Validate
@@ -12,7 +11,7 @@ class Validate
 		$this->connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	}
 
-	function ValidateEmailInDb($email)
+	function validateEmailInDb($email)
 	{
 		$query = "SELECT login_id FROM login WHERE email = '$email'";
 		if ($result = $this->connect->query($query))
@@ -25,7 +24,7 @@ class Validate
 		}
 	}
 
-	function ValidateUsernameInDb($username)
+	function validateUsernameInDb($username)
 	{
 		$query = "SELECT login_id FROM login WHERE username = '$username'";
 		if ($result = $this->connect->query($query)) {

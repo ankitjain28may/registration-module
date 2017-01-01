@@ -1,8 +1,12 @@
 <?php
-@session_start();
-if(isset($_SESSION['start']))
+
+namespace AnkitJain\RegistrationModule;
+require (dirname(__DIR__) . '/registration-module/vendor/autoload.php');
+use AnkitJain\RegistrationModule\Session;
+
+if(Session::get('start') != null)
 {
-	unset($_SESSION['start']);
+	Session::forget('start');
 	header('Location: index.php');
 }
 else

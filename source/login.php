@@ -1,6 +1,6 @@
 <?php
 namespace AnkitJain\RegistrationModule;
-@session_start();
+use AnkitJain\RegistrationModule\Session;
 require_once (dirname(__DIR__) . '/config/database.php');
 
 class Login
@@ -19,7 +19,7 @@ class Login
 		$this->error = array();
 	}
 
-	function AuthLogin($login, $password)
+	function authLogin($login, $password)
 	{
 
 		$this->login = trim($login);
@@ -55,13 +55,13 @@ class Login
 				if ($result->num_rows > 0)
 				{
 					$row = $result->fetch_assoc();
-					$login_id = $row['login_id'];
-					$query = "SELECT id FROM register WHERE id = '$login_id' and password = '$pass'";
+					$loginID = $row['login_id'];
+					$query = "SELECT id FROM register WHERE id = '$loginID' and password = '$pass'";
 					if($result = $this->connect->query($query))
 					{
 						if ($result->num_rows > 0)
 						{
-							$_SESSION['start'] = $login_id;
+							Session::put('start', $loginID);
 							return json_encode([
 								"location" => URL."/account.php"
 							]);
