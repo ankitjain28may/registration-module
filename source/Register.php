@@ -12,7 +12,7 @@ class Register
 	protected $obValidate;
 	protected $connect;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->error = array();
 		$this->key = 0;
@@ -21,7 +21,7 @@ class Register
 
 	}
 
-	function authRegister($name, $email, $username, $password, $mob)
+	public function authRegister($name, $email, $username, $password, $mob)
 	{
 		$name = trim($name);
 		$email = trim($email);

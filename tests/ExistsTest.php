@@ -22,6 +22,9 @@ class ExistsTest
             [
                 RegistrationModule\Validate::class,
             ],
+            [
+                RegistrationModule\Session::class,
+            ],
         ];
     }
 

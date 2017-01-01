@@ -6,12 +6,12 @@ class Validate
 {
 	protected $connect;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	}
 
-	function validateEmailInDb($email)
+	public function validateEmailInDb($email)
 	{
 		$query = "SELECT login_id FROM login WHERE email = '$email'";
 		if ($result = $this->connect->query($query))

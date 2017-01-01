@@ -11,14 +11,14 @@ class Login
 	protected $error;
 	protected $connect;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->key = 0;
 		$this->connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 		$this->error = array();
 	}
 
-	function authLogin($login, $password)
+	public function authLogin($login, $password)
 	{
 
 		$login = trim($login);
@@ -43,7 +43,7 @@ class Login
 		}
 		else
 		{
-			$pass = md5($password);
+			$password = md5($password);
 		}
 
 		if($this->key == 0)
@@ -55,7 +55,7 @@ class Login
 				{
 					$row = $result->fetch_assoc();
 					$loginID = $row['login_id'];
-					$query = "SELECT id FROM register WHERE id = '$loginID' and password = '$pass'";
+					$query = "SELECT id FROM register WHERE id = '$loginID' and password = '$password'";
 					if($result = $this->connect->query($query))
 					{
 						if ($result->num_rows > 0)
