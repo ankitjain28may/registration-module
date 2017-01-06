@@ -20,6 +20,12 @@ function showError(key, value)
     $(key).before(txt);
 }
 
+function validateEmail(val)
+{
+    var re = /^\S+@\w+\.\w+$/;
+    return re.test(val);
+}
+
 function name()
 {
     var name = $("#name").val();
@@ -119,12 +125,6 @@ function passwordRegister()
     }
 }
 
-function validateEmail(val)
-{
-    var re = /^\S+@\w+\.\w+$/;
-    return re.test(val);
-}
-
 function initRegister()
 {
     name();
@@ -183,11 +183,11 @@ function registerCheck() {
     if(valName === 0 && valEmail === 0 && valUser === 0 && valMob === 0 && valPassRegister === 0)
     {
         var q = {
-            "name" : name,
-            "email" : email,
-            "username" : username,
-            "mob" : mob,
-            "password" : password
+            "name": name,
+            "email": email,
+            "username": username,
+            "mob": mob,
+            "password": password
         };
         q = "q=" + JSON.stringify(q);
         // console.log(q);

@@ -18,6 +18,12 @@ function showError(key, value)
     $(key).before(txt);
 }
 
+function validateEmail(val)
+{
+    var re = /^\S+@\w+\.\w+$/;
+    return re.test(val);
+}
+
 function login()
 {
     var re = /^\S+@/;
@@ -83,13 +89,6 @@ $("#passLogin").blur(function()
     passwordLogin();
 });
 
-
-function validateEmail(val)
-{
-    var re = /^\S+@\w+\.\w+$/;
-    return re.test(val);
-}
-
 function loginCheck()
 {
     var login = $("#login").val();
@@ -99,8 +98,8 @@ function loginCheck()
     if(valLogin === 0 && valPass === 0)
     {
         var q = {
-            "login" : login,
-            "password" : password
+            "login": login,
+            "password": password
         };
 
         q = "q=" + JSON.stringify(q);
