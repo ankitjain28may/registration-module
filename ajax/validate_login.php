@@ -10,7 +10,11 @@ if(isset($_POST['q']))
 	$login = $loginField->login;
 	$password = $loginField->password;
 	$obLogin = new Login();
-	$result = $obLogin->authLogin($login, $password);
+    $data = array(
+        'login' => $login,
+        'passLogin' => $password
+    );
+	$result = $obLogin->authLogin($data);
 	if(isset($result))
 		echo $result;
 	else

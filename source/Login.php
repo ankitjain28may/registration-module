@@ -7,47 +7,36 @@ require_once (dirname(__DIR__) . '/config/database.php');
 class Login
 {
 
-	protected $key;
+	protected $flag;
 	protected $error;
 	protected $connect;
 
 	public function __construct()
 	{
-		$this->key = 0;
+		$this->flag = 0;
 		$this->connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 		$this->error = array();
 	}
 
-	public function authLogin($login, $password)
+	public function authLogin($data)
 	{
+		$data = $this->emptyValue($data);
 
-		$login = trim($login);
-		$password = trim($password);
+		$login = $data["login"];
+		$password = $data["passLogin"];
 
-		if(empty($login))
-		{
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["login" => " *Enter the login field"]);
-		}
-		elseif (preg_match("/^[@]{1}$/", $login))
+
+		if (preg_match("/^[@]{1}$/", $login))
 		{
 			if(filter_var($login, FILTER_VALIDATE_EMAIL) == false)
 			{
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["login" => " *Enter correct Email address"]);
+			$this->onError("login", " *Enter correct Email address");
 			}
 		}
-		if(empty($password)) {
-			$this->key = 1;
-			$this->error = array_merge($this->error, ["password" => " *Enter the password"]);
-		}
-		else
+
+		if($this->flag == 0)
 		{
 			$password = md5($password);
-		}
-
-		if($this->key == 0)
-		{
 			$query = "SELECT * FROM login WHERE email = '$login' or username = '$login'";
 			if ($result = $this->connect->query($query))
 			{
@@ -65,25 +54,44 @@ class Login
 								"location" => URL."/account.php"
 							]);
 						}
-						else
-						{
-							$this->error = array_merge($this->error, ["password" => " *Invalid password"]);
-							return json_encode($this->error);
-						}
+						$this->onError("passLogin", " *Invalid password");
+						return json_encode($this->error);
 					}
+					return json_encode(["Error" => "You are not registered, ".$this->connect->error ]);
 				}
-				else
-				{
-					$this->error = array_merge($this->error, ["login" => " *Invalid username or email"]);
-					return json_encode($this->error);
-				}
+				$this->onError("login", " *Invalid username or email");
+				return json_encode($this->error);
 			}
-
+			return json_encode(["Error" => "You are not registered, ".$this->connect->error ]);
 		}
 		else
 		{
 			return json_encode($this->error);
 		}
 		$this->connect->close();
+	}
+
+	public function onError($key, $value)
+	{
+		$this->flag = 1;
+		$this->error = array_merge($this->error, [["key" => $key, "value" => $value]]);
+	}
+
+	public function emptyValue($data)
+	{
+		$errorCode = array(
+			"login" => " *Enter the login field",
+			"passRegister" => " *Enter the password"
+		);
+
+		foreach ($data as $key => $value) {
+			$data[$key] = trim($data[$key]);
+			$value = trim($value);
+			if(empty($value))
+			{
+				$this->onError($key, $errorCode[$key]);
+			}
+		}
+		return $data;
 	}
 }

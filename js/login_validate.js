@@ -48,20 +48,14 @@ function loginCheck()
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
             {
                 var result = JSON.parse(xmlhttp.responseText);
-                if(result['location'])
+                // console.log(result);
+                if(result["location"])
                 {
-                    location.href = result['location'];
+                    location.href = result["location"];
                 }
-                if(result['login'])
-                {
-                    $("input#login").prev("span").remove()
-                    showLoginError(result['login']);
-                }
-                if(result['password'])
-                {
-                    $("input#passLogin").prev("span").remove()
-                    showPassErrorLogin(result['password']);
-                }
+                $(result).each(function(index, element) {
+                    showError(element["key"], element["value"])
+                });
             }
         };
         xmlhttp.open("POST", "ajax/validate_login.php", true);
@@ -76,20 +70,14 @@ function loginCheck()
     }
 }
 
-function showLoginError(txt)
+function showError(key, value)
 {
-    $("input#login").prev("span").remove()
-    $("#login").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#login").before(txt1);
-}
-
-function showPassErrorLogin(txt)
-{
-    $("input#passLogin").prev("span").remove()
-    $("#passLogin").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#passLogin").before(txt1);
+    key = "#"+key;
+    var selector = "input"+key;
+    $(selector).prev("span").remove();
+    $(key).css(errorInput);
+    var txt = $("<span></span>").text(value).css(errorText);
+    $(key).before(txt);
 }
 
 function login()

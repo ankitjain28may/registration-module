@@ -77,30 +77,13 @@ function registerCheck() {
             {
                 var result = JSON.parse(xmlhttp.responseText);
                 // console.log(result);
-                if(result['location'])
+                if(result["location"])
                 {
-                    location.href = result['location'];
+                    location.href = result["location"];
                 }
-                if(result['name'])
-                {
-                    showNameError(result['name']);
-                }
-                if(result['password'])
-                {
-                    showPassErrorRegister(result['password']);
-                }
-                if(result['email'])
-                {
-                    showEmailError(result['email']);
-                }
-                if(result['username'])
-                {
-                    showUsernameError(result['username']);
-                }
-                if(result['mob'])
-                {
-                    showMobError(result['mob']);
-                }
+                $(result).each(function(index, element) {
+                    showError(element["key"], element["value"])
+                });
             }
         };
         xmlhttp.open("POST", "ajax/validate_register.php", true);
@@ -114,43 +97,14 @@ function registerCheck() {
     }
 }
 
-function showNameError(txt)
+function showError(key, value)
 {
-    $("input#name").prev("span").remove();
-    $("#name").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#name").before(txt1);
-}
-
-function showEmailError(txt)
-{
-    $("input#email").prev("span").remove();
-    $("#email").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#email").before(txt1);
-}
-function showUsernameError(txt)
-{
-    $("input#username").prev("span").remove();
-    $("#username").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#username").before(txt1);
-}
-
-function showMobError(txt)
-{
-    $("input#mob").prev("span").remove();
-    $("#mob").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#mob").before(txt1);
-}
-
-function showPassErrorRegister(txt)
-{
-    $("input#passRegister").prev("span").remove();
-    $("#passRegister").css(errorInput);
-    var txt1 = $("<span></span>").text(txt).css(errorText);
-    $("#passRegister").before(txt1);
+    key = "#"+key;
+    var selector = "input"+key;
+    $(selector).prev("span").remove();
+    $(key).css(errorInput);
+    var txt = $("<span></span>").text(value).css(errorText);
+    $(key).before(txt);
 }
 
 function name()
