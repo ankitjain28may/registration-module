@@ -8,6 +8,7 @@
 [![Code Climate](https://codeclimate.com/github/ankitjain28may/registration-module/badges/gpa.svg)](https://codeclimate.com/github/ankitjain28may/registration-module)
 [![Test Coverage](https://codeclimate.com/github/ankitjain28may/registration-module/badges/coverage.svg)](https://codeclimate.com/github/ankitjain28may/registration-module/coverage)
 [![Issue Count](https://codeclimate.com/github/ankitjain28may/registration-module/badges/issue_count.svg)](https://codeclimate.com/github/ankitjain28may/registration-module)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bc923721c91432189acbd9f4b2925c4)](https://www.codacy.com/app/ankitjain28may77/registration-module?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ankitjain28may/registration-module&amp;utm_campaign=Badge_Grade)
 [![npm](https://img.shields.io/npm/dt/registration-module.svg?style=flat-square)](https://www.npmjs.com/package/registration-module)
 [![Packagist](https://img.shields.io/packagist/dt/registration-module/module.svg?style=flat-square)](https://packagist.org/packages/registration-module/module)
 

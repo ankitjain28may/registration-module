@@ -24,7 +24,7 @@ class Validate
 		}
 	}
 
-	function validateUsernameInDb($username)
+	public function validateUsernameInDb($username)
 	{
 		$query = "SELECT login_id FROM login WHERE username = '$username'";
 		if ($result = $this->connect->query($query)) {

@@ -68,7 +68,6 @@ class Login
 		{
 			return json_encode($this->error);
 		}
-		$this->connect->close();
 	}
 
 	public function onError($key, $value)

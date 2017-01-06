@@ -10,6 +10,121 @@ errorInput = JSON.parse(errorInput);
 var removeError = '{"outline":"none","border-color":"#ccc"}';
 removeError = JSON.parse(removeError);
 
+function showError(key, value)
+{
+    key = "#"+key;
+    var selector = "input"+key;
+    $(selector).prev("span").remove();
+    $(key).css(errorInput);
+    var txt = $("<span></span>").text(value).css(errorText);
+    $(key).before(txt);
+}
+
+function name()
+{
+    var name = $("#name").val();
+    $("#name + span").text("");
+    if(name === "")
+    {
+        valName = 1;
+        showError("name", " *Please input your name");
+    }
+    else
+    {
+        $("#name").css(removeError);
+        valName = 0;
+    }
+}
+
+function email()
+{
+    var val = $("#email").val();
+    var ret = validateEmail(val);
+    $("input#email").prev("span").remove();
+    if(val === "")
+    {
+        valEmail = 1;
+        showError("email", " *Enter Your email address");
+    }
+    else if(!ret)
+    {
+        valEmail = 1;
+        showError("email", " *Invalid Email");
+    }
+    else
+    {
+        $("#email").css(removeError);
+        valEmail = 0;
+    }
+}
+
+function username()
+{
+    var val = $("#username").val();
+    var re = /^\S+@/;
+
+    $("input#username").prev("span").remove();
+    if(val === "")
+    {
+        valUser = 1;
+        showError("username", " *Enter Your username");
+    }
+    else if(re.test(val))
+    {
+        valUser = 1;
+        showError("username", " *Invalid username");
+    }
+    else
+    {
+        $("#username").css(removeError);
+        valUser = 0;
+    }
+}
+
+function mob()
+{
+    var mob = $("#mob").val();
+    var re = /^[0-9]{10}$/;
+    $("input#mob").prev("span").remove();
+    if(mob === "")
+    {
+        valMob = 1;
+        showError("mob", " *Enter your mobile no.");
+    }
+    else if(!re.test(mob))
+    {
+        valMob = 1;
+        showError("mob", " *Enter 10 digit mobile no.");
+    }
+    else
+    {
+        $("#mob").css(removeError);
+        valMob = 0;
+    }
+}
+
+function passwordRegister()
+{
+    var pass = $("#passRegister").val();
+    $("input#passRegister").prev("span").remove();
+    if(pass === "")
+    {
+        valPassRegister = 1;
+        showError("passRegister", " *Enter your password");
+    }
+    else
+    {
+        $("#passRegister").css(removeError);
+        valPassRegister = 0;
+    }
+}
+
+function validateEmail(val)
+{
+    var re = /^\S+@\w+\.\w+$/;
+    return re.test(val);
+}
+
 function initRegister()
 {
     name();
@@ -67,7 +182,13 @@ function registerCheck() {
 
     if(valName === 0 && valEmail === 0 && valUser === 0 && valMob === 0 && valPassRegister === 0)
     {
-        var q = {"name":name,"email":email,"username":username,"mob":mob,"password":password};
+        var q = {
+            "name" : name,
+            "email" : email,
+            "username" : username,
+            "mob" : mob,
+            "password" : password
+        };
         q = "q=" + JSON.stringify(q);
         // console.log(q);
         var xmlhttp = new XMLHttpRequest();
@@ -82,7 +203,7 @@ function registerCheck() {
                     location.href = result["location"];
                 }
                 $(result).each(function(index, element) {
-                    showError(element["key"], element["value"])
+                    showError(element["key"], element["value"]);
                 });
             }
         };
@@ -93,121 +214,7 @@ function registerCheck() {
     else
     {
         // alert("Please Fill correct details");
-        $("#myModal").modal()
+        $("#myModal").modal();
     }
 }
 
-function showError(key, value)
-{
-    key = "#"+key;
-    var selector = "input"+key;
-    $(selector).prev("span").remove();
-    $(key).css(errorInput);
-    var txt = $("<span></span>").text(value).css(errorText);
-    $(key).before(txt);
-}
-
-function name()
-{
-    var name = $("#name").val();
-    $("#name + span").text("");
-    if(name === "")
-    {
-        valName = 1;
-        showNameError(" *Please input your name");
-    }
-    else
-    {
-        $("#name").css(removeError);
-        valName = 0;
-    }
-}
-
-function email()
-{
-    var val = $("#email").val();
-    var ret = validate_email(val);
-    $("input#email").prev("span").remove();
-    if(val === "")
-    {
-        valEmail = 1;
-        showEmailError(" *Enter Your email address");
-    }
-    else if(!ret)
-    {
-        valEmail = 1;
-        showEmailError(" *Invalid Email");
-    }
-    else
-    {
-        $("#email").css(removeError);
-        valEmail = 0;
-    }
-}
-
-function username()
-{
-    var val = $("#username").val();
-    var re = /^\S+@/;
-
-    $("input#username").prev("span").remove();
-    if(val === "")
-    {
-        valUser = 1;
-        showUsernameError(" *Enter Your username");
-    }
-    else if(re.test(val))
-    {
-        valUser = 1;
-        showUsernameError(" *Invalid username");
-    }
-    else
-    {
-        $("#username").css(removeError);
-        valUser = 0;
-    }
-}
-
-function mob()
-{
-    var mob = $("#mob").val();
-    var re = /^[0-9]{10}$/;
-    $("input#mob").prev("span").remove();
-    if(mob === "")
-    {
-        valMob = 1;
-        showMobError(" *Enter your mobile no.");
-    }
-    else if(!re.test(mob))
-    {
-        valMob = 1;
-        showMobError(" *Enter 10 digit mobile no.");
-    }
-    else
-    {
-        $("#mob").css(removeError);
-        valMob = 0;
-    }
-}
-
-function passwordRegister()
-{
-    var pass = $("#passRegister").val();
-    $("input#passRegister").prev("span").remove();
-    if(pass === "")
-    {
-        valPassRegister = 1;
-        showPassErrorRegister(" *Enter your password");
-    }
-    else
-    {
-        $("#passRegister").css(removeError);
-        valPassRegister = 0;
-    }
-}
-
-function validate_email(val)
-{
-    var re = /^\S+@\w+\.\w+$/;
-    return re.test(val);
-}
