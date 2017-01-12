@@ -1,8 +1,8 @@
 <?php
-namespace ChatApp\Tests;
+namespace AnkitJain\RegistrationModule\Tests;
 
 use PHPUnit_Framework_TestCase;
-use ChatApp\Session;
+use AnkitJain\RegistrationModule\Session;
 
 class TestSession
     extends
