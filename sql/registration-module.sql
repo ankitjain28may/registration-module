@@ -40,7 +40,7 @@ CREATE TABLE `login` (
 --
 
 CREATE TABLE `register` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment primary key,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
