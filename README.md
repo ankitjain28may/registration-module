@@ -6,7 +6,7 @@
 [![Build Status](https://status.continuousphp.com/git-hub/ankitjain28may/registration-module?token=bc2756bb-c28b-4896-a3cb-ca62ef41f3cb&branch=master)](https://continuousphp.com/git-hub/ankitjain28may/registration-module)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ankitjain28may/registration-module/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ankitjain28may/registration-module/?branch=master)
 [![Code Climate](https://codeclimate.com/github/ankitjain28may/registration-module/badges/gpa.svg)](https://codeclimate.com/github/ankitjain28may/registration-module)
-[![Test Coverage](https://codeclimate.com/github/ankitjain28may/registration-module/badges/coverage.svg)](https://codeclimate.com/github/ankitjain28may/registration-module/coverage)
+[![Coverage Status](https://coveralls.io/repos/github/ankitjain28may/registration-module/badge.svg?branch=master)](https://coveralls.io/github/ankitjain28may/registration-module?branch=master)
 [![Issue Count](https://codeclimate.com/github/ankitjain28may/registration-module/badges/issue_count.svg)](https://codeclimate.com/github/ankitjain28may/registration-module)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bc923721c91432189acbd9f4b2925c4)](https://www.codacy.com/app/ankitjain28may77/registration-module?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ankitjain28may/registration-module&amp;utm_campaign=Badge_Grade)
 [![npm](https://img.shields.io/npm/dt/registration-module.svg?style=flat-square)](https://www.npmjs.com/package/registration-module)
