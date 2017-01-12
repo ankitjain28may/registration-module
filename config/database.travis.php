@@ -4,5 +4,5 @@
   define('DB_USER', 'root');
   define('DB_PASSWORD','');
   define('DB_NAME', 'account');
-  define('URL', 'http://127.0.0.1/openchat');
+  define('URL', 'http://localhost/registration-module');
 
