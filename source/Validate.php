@@ -19,8 +19,7 @@ class Validate
 			if ($result->num_rows > 0) {
 				return 1;
 			}
-			else
-				return 0;
+			return 0;
 		}
 	}
 
@@ -31,8 +30,7 @@ class Validate
 			if ($result->num_rows > 0) {
 				return 1;
 			}
-			else
-				return 0;
+			return 0;
 		}
 	}
 }
