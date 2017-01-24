@@ -290,12 +290,12 @@ class TestUser
     */
     public function test_validateEmailInDbNot()
     {
-        $output = $this->obValidate->validateEmailInDb('ankitjain28may77@gmail.com');
+        $output = $this->obValidate->validateEmailInDb('ankitjain28ma77@gmail.com');
         $this->assertEquals(0, $output);
     }
 
     /**
-    *   @depends test_Online
+    *   @depends test_validateEmailInDbNot
     *  Empty the DB
     */
     public function test_EmptyDB()
@@ -307,8 +307,6 @@ class TestUser
             getenv('DB_NAME')
         );
         $query = "TRUNCATE `login`";
-        $this->assertTrue($connect->query($query));
-        $query = "TRUNCATE `profile`";
         $this->assertTrue($connect->query($query));
         $query = "TRUNCATE `register`";
         $this->assertTrue($connect->query($query));
