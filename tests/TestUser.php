@@ -5,7 +5,7 @@ use PHPUnit_Framework_TestCase;
 use AnkitJain\RegistrationModule\Login;
 use AnkitJain\RegistrationModule\Register;
 use AnkitJain\RegistrationModule\Validate;
-
+require_once dirname(__DIR__) . '/config/database.php';
 
 class TestUser
     extends

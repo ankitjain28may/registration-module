@@ -8,7 +8,6 @@ php:
 before_install:
   - cp ./config/database.travis.php ./config/database.php
   - composer require phpunit/phpunit:4.8.* satooshi/php-coveralls:dev-master
-  - composer require "squizlabs/php_codesniffer=*"
   - composer install --dev --ignore-platform-reqs
   - mysql -e 'CREATE DATABASE account;'
   - mysql -u root  account < ./sql/registration-module.sql
@@ -16,7 +15,6 @@ before_install:
 script:
   - mkdir -p build/logs
   - phpunit --coverage-clover build/logs/clover.xml
-  - phpcs source
 
 after_script:
   - php vendor/bin/coveralls -v
