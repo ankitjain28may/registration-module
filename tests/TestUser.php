@@ -7,6 +7,7 @@ use AnkitJain\RegistrationModule\Register;
 use AnkitJain\RegistrationModule\Validate;
 require_once dirname(__DIR__) . '/config/database.php';
 
+
 class TestUser
     extends
         PHPUnit_Framework_TestCase
@@ -300,12 +301,7 @@ class TestUser
     */
     public function test_EmptyDB()
     {
-        $connect = mysqli_connect(
-            getenv('DB_HOST'),
-            getenv('DB_USER'),
-            getenv('DB_PASSWORD'),
-            getenv('DB_NAME')
-        );
+        $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $query = "TRUNCATE `login`";
         $this->assertTrue($connect->query($query));
         $query = "TRUNCATE `register`";
